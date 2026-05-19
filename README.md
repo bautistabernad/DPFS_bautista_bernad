@@ -19,3 +19,6 @@ Mi nombre es Bautista Bernad y actualmente me encuentro estudiando desarrollo we
 3. Domestika: referencia por su estética visual y presentación de cursos.
 4. Skillshare: referencia por su navegación simple y enfoque educativo.
 5. Airbnb: referencia por su sistema de filtros, perfiles y experiencia marketplace.
+
+## Tablero de trello
+https://trello.com/invite/b/6a0ca73f39c3d38f61f9d94e/ATTI7270aa5d1f9196d9b57b933d88a0447139C39B84/tempo-sprint-2
