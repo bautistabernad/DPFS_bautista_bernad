@@ -14,7 +14,10 @@ const productsController = {
 
     edit: (req, res) => {
         res.render('products/productEdit');
-    }
+    },
+    list: (req, res) => {
+        res.render('products/productsList');
+    },
 };
 
 module.exports = productsController;
