@@ -12,49 +12,46 @@
 
                 <div class="product-container">
 
-                    <article class="product-card">
-                        <div class="product-img">🎸</div>
-                        <div>
-                            <h3>Clase de Guitarra Inicial</h3>
-                            <p>Profesor: Martín López</p>
-                            <p>Nivel: Principiante</p>
-                            <p class="price">$12.000</p>
-                            <a href="/products/detail" class="btn-secondary">Ver detalle</a>
-                        </div>
-                    </article>
+                    <% products.forEach(product=> { %>
 
-                    <article class="product-card">
-                        <div class="product-img">🎹</div>
-                        <div>
-                            <h3>Pack de Piano Moderno</h3>
-                            <p>Profesora: Laura Gómez</p>
-                            <p>Nivel: Intermedio</p>
-                            <p class="price">$25.000</p>
-                            <a href="/products/detail" class="btn-secondary">Ver detalle</a>
-                        </div>
-                    </article>
+                        <article class="product-card">
 
-                    <article class="product-card">
-                        <div class="product-img">🎤</div>
-                        <div>
-                            <h3>Clase de Técnica Vocal</h3>
-                            <p>Profesora: Sofía Ruiz</p>
-                            <p>Nivel: Todos los niveles</p>
-                            <p class="price">$15.000</p>
-                            <a href="/products/detail" class="btn-secondary">Ver detalle</a>
-                        </div>
-                    </article>
+                            <div class="product-img">🎵</div>
 
-                    <article class="product-card">
-                        <div class="product-img">🥁</div>
-                        <div>
-                            <h3>Clase de Batería</h3>
-                            <p>Profesor: Diego Ramos</p>
-                            <p>Nivel: Principiante</p>
-                            <p class="price">$14.000</p>
-                            <a href="/products/detail" class="btn-secondary">Ver detalle</a>
-                        </div>
-                    </article>
+                            <div>
+                                <h3>
+                                    <%= product.name %>
+                                </h3>
+
+                                <p>
+                                    <%= product.category %>
+                                </p>
+
+                                <p>
+                                    <%= product.level %>
+                                </p>
+
+                                <p class="price">$<%= product.price %>
+                                </p>
+
+                                <a href="/products/<%= product.id %>" class="btn-secondary">
+                                    Ver detalle
+                                </a>
+                                <a href="/products/<%= product.id %>/edit" class="btn-secondary">
+                                    Editar
+                                </a>
+                                <form action="/products/<%= product.id %>?_method=DELETE" method="POST">
+                                    <button type="submit" class="delete-btn">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </div>
+
+                        </article>
+
+
+                        <% }) %>
+
 
                 </div>
             </main>

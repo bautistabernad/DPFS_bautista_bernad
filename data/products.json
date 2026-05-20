@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Clase de Guitarra Inicial",
+    "description": "Aprendé acordes, ritmo, postura y canciones simples desde cero.",
+    "image": "guitarra.jpg",
+    "category": "Guitarra",
+    "level": "Principiante",
+    "price": 12000
+  },
+  {
+    "id": 2,
+    "name": "Pack de Piano Moderno",
+    "description": "Curso completo de piano moderno para mejorar técnica y armonía.",
+    "image": "piano.jpg",
+    "category": "Piano",
+    "level": "Intermedio",
+    "price": 25000
+  },
+  {
+    "id": 3,
+    "name": "Clase de Técnica Vocal",
+    "description": "Mejorá tu respiración, afinación y proyección vocal.",
+    "image": "canto.jpg",
+    "category": "Canto",
+    "level": "Todos los niveles",
+    "price": 15000
+  }
+]

@@ -2,7 +2,8 @@
   "dependencies": {
     "ejs": "^5.0.2",
     "express": "^5.2.1",
-    "express-generator": "^4.2.0"
+    "express-generator": "^4.2.0",
+    "method-override": "^3.0.0"
   },
   "name": "dpfs_bautista_bernad",
   "version": "1.0.0",
