@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head') %>
+
+    <body>
+
+        <%- include('../partials/header') %>
+
+            <main class="auth-page">
+
+                <section class="auth-container">
+
+                    <div class="auth-left">
+                        <p class="hero-tag">Panel administrador</p>
+                        <h1>Crear producto</h1>
+
+                        <p>
+                            Cargá nuevas clases o packs para publicar en Tempo.
+                        </p>
+                    </div>
+
+                    <form class="auth-form">
+
+                        <h2>Nuevo producto</h2>
+
+                        <div class="form-group">
+                            <label>Nombre del producto</label>
+                            <input type="text" placeholder="Clase de guitarra">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea placeholder="Descripción del producto"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Imagen</label>
+                            <input type="file">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Categoría</label>
+                            <select>
+                                <option>Guitarra</option>
+                                <option>Piano</option>
+                                <option>Canto</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input type="number" placeholder="$">
+                        </div>
+
+                        <button class="btn-primary auth-btn">
+                            Crear producto
+                        </button>
+
+                    </form>
+
+                </section>
+
+            </main>
+
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

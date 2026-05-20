@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-generator": "^4.2.0"
+  },
+  "name": "dpfs_bautista_bernad",
+  "version": "1.0.0",
+  "description": "Tempo es un marketplace de clases de música online. La plataforma permite que estudiantes encuentren profesores de distintos instrumentos, reserven clases en vivo y compren packs de contenido pregrabado.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bautistabernad/DPFS_bautista_bernad.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bautistabernad/DPFS_bautista_bernad/issues"
+  },
+  "homepage": "https://github.com/bautistabernad/DPFS_bautista_bernad#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

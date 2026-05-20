@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head') %>
+
+    <body>
+
+        <%- include('../partials/header') %>
+
+            <main class="auth-page">
+
+                <section class="auth-container">
+
+                    <div class="auth-left">
+                        <p class="hero-tag">Panel administrador</p>
+                        <h1>Editar producto</h1>
+
+                        <p>
+                            Modificá la información de una clase o pack publicado en Tempo.
+                        </p>
+                    </div>
+
+                    <form class="auth-form">
+
+                        <h2>Editar producto</h2>
+
+                        <div class="form-group">
+                            <label>Nombre del producto</label>
+                            <input type="text" value="Clase de Guitarra Inicial">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea>Aprendé los primeros acordes, ritmo, postura y canciones simples desde cero.</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Imagen actual</label>
+                            <div class="edit-preview">🎸</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cambiar imagen</label>
+                            <input type="file">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Categoría</label>
+                            <select>
+                                <option selected>Guitarra</option>
+                                <option>Piano</option>
+                                <option>Canto</option>
+                                <option>Batería</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nivel</label>
+                            <select>
+                                <option selected>Principiante</option>
+                                <option>Intermedio</option>
+                                <option>Avanzado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Precio</label>
+                            <input type="number" value="12000">
+                        </div>
+
+                        <button class="btn-primary auth-btn">
+                            Guardar cambios
+                        </button>
+
+                    </form>
+
+                </section>
+
+            </main>
+
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

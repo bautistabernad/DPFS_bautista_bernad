@@ -701,3 +701,26 @@ h2 {
     display: block;
     font-size: 13px;
 }
+
+.form-group textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #303846;
+    background: #0b1018;
+    color: #ffffff;
+    resize: vertical;
+}
+
+.edit-preview {
+    width: 100%;
+    min-height: 120px;
+    background: #201a31;
+    border: 1px solid #303846;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+}

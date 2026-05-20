@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('./partials/head') %>
+
+    <body>
+
+        <%- include('../partials/header') %>
+
+            <main class="cart-page">
+                <h1>Carrito de compras</h1>
+
+                <section class="cart-container">
+                    <div class="cart-items">
+
+                        <article class="cart-item">
+                            <div class="cart-img">🎸</div>
+                            <div class="cart-info">
+                                <h2>Clase de Guitarra Inicial</h2>
+                                <p>Profesor: Martín López</p>
+                                <p>Modalidad: Clase en vivo</p>
+                            </div>
+
+                            <div class="cart-quantity">
+                                <button>-</button>
+                                <span>1</span>
+                                <button>+</button>
+                            </div>
+
+                            <p class="cart-price">$12.000</p>
+                            <button class="delete-btn">Eliminar</button>
+                        </article>
+
+                        <article class="cart-item">
+                            <div class="cart-img">🎹</div>
+                            <div class="cart-info">
+                                <h2>Pack de Piano Moderno</h2>
+                                <p>Profesora: Laura Gómez</p>
+                                <p>Modalidad: Pack pregrabado</p>
+                            </div>
+
+                            <div class="cart-quantity">
+                                <button>-</button>
+                                <span>1</span>
+                                <button>+</button>
+                            </div>
+
+                            <p class="cart-price">$25.000</p>
+                            <button class="delete-btn">Eliminar</button>
+                        </article>
+
+                    </div>
+
+                    <aside class="cart-summary">
+                        <h2>Resumen</h2>
+
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>$37.000</span>
+                        </div>
+
+                        <div class="summary-row">
+                            <span>Servicio</span>
+                            <span>$2.775</span>
+                        </div>
+
+                        <div class="summary-total">
+                            <span>Total</span>
+                            <span>$39.775</span>
+                        </div>
+
+                        <a href="login.html" class="btn-primary">Finalizar compra</a>
+                    </aside>
+                </section>
+            </main>
+
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

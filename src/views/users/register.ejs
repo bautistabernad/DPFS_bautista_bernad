@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('./partials/head') %>
+
+    <body>
+
+        <%- include('../partials/header') %>
+
+            <main class="auth-page">
+
+                <section class="auth-container">
+
+                    <div class="auth-left">
+                        <p class="hero-tag">Creá tu cuenta</p>
+                        <h1>Sumate a Tempo</h1>
+                        <p>
+                            Registrate para comprar clases, guardar profesores favoritos y acceder a tu historial.
+                        </p>
+                    </div>
+
+                    <form class="auth-form">
+
+                        <h2>Registro</h2>
+
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" placeholder="Ingresá tu nombre">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Apellido</label>
+                            <input type="text" placeholder="Ingresá tu apellido">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="Ingresá tu email">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" placeholder="Creá una contraseña">
+                            <small class="form-error">La contraseña debe tener al menos 8 caracteres.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tipo de usuario</label>
+                            <select>
+                                <option>Alumno</option>
+                                <option>Profesor</option>
+                            </select>
+                        </div>
+
+                        <button class="btn-primary auth-btn">
+                            Crear cuenta
+                        </button>
+
+                        <p class="auth-link">
+                            ¿Ya tenés cuenta?
+                            <a href="login.html">Iniciar sesión</a>
+                        </p>
+
+                    </form>
+
+                </section>
+
+            </main>
+
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

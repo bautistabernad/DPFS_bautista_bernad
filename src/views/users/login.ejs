@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head') %>
+
+    <body>
+
+        <%- include('../partials/header') %>
+
+            <main class="auth-page">
+
+                <section class="auth-container">
+
+                    <div class="auth-left">
+                        <p class="hero-tag">Bienvenido nuevamente</p>
+                        <h1>Ingresá a tu cuenta</h1>
+
+                        <p>
+                            Accedé a tus clases, historial de compras y profesores favoritos.
+                        </p>
+                    </div>
+
+                    <form class="auth-form">
+
+                        <h2>Iniciar sesión</h2>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="Ingresá tu email">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" placeholder="Ingresá tu contraseña">
+                        </div>
+
+                        <div class="remember-row">
+                            <label>
+                                <input type="checkbox">
+                                Recordarme
+                            </label>
+
+                            <a href="#">Olvidé mi contraseña</a>
+                        </div>
+
+                        <button class="btn-primary auth-btn">
+                            Iniciar sesión
+                        </button>
+
+                        <p class="auth-link">
+                            ¿No tenés cuenta?
+                            <a href="register.html">Registrate</a>
+                        </p>
+
+                    </form>
+
+                </section>
+
+            </main>
+
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>
