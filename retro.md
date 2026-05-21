@@ -63,3 +63,27 @@
 ## Dejar de hacer
 - Dejar rutas sin revisar en localhost.
 - Trabajar sin reiniciar el servidor después de cambios importantes.
+
+# Retrospectiva Sprint 5
+
+## Comenzar a hacer
+- Revisar mejor el flujo completo de usuarios antes de avanzar.
+- Probar sesiones, cookies y middlewares en diferentes estados: logueado y no logueado.
+- Mantener una estructura clara para rutas protegidas y rutas públicas.
+
+## Hacer más
+- Practicar el uso de middlewares.
+- Verificar los nombres de archivos y rutas antes de ejecutar el servidor.
+- Probar cada formulario revisando también el archivo de datos correspondiente.
+
+## Continuar haciendo
+- Trabajar paso a paso.
+- Mantener la estructura MVC.
+- Probar en localhost después de cada cambio importante.
+
+## Hacer menos
+- Avanzar sin revisar errores de consola.
+- Crear archivos sin confirmar que coincidan con los require.
+
+## Dejar de hacer
+- Trabajar sin reiniciar el servidor después de cambios en rutas o middlewares.

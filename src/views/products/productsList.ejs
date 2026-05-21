@@ -9,51 +9,70 @@
 
             <main class="products">
                 <h1 class="page-title">Clases y packs disponibles</h1>
+                <% if (userLogged && (userLogged.category=='teacher' || userLogged.category=='admin' )) { %>
+                    <a href="/products/create" class="btn-primary create-product-btn">
+                        Publicar nueva clase
+                    </a>
+                    <% } %>
+                        <form action="/products/search/results" method="GET" class="search-section">
+                            <input type="text" name="keywords" placeholder="Buscar clases o packs...">
+                            <button type="submit" class="btn-primary">
+                                Buscar
+                            </button>
+                        </form>
 
-                <div class="product-container">
+                        <div class="product-container">
 
-                    <% products.forEach(product=> { %>
+                            <% products.forEach(product=> { %>
 
-                        <article class="product-card">
+                                <article class="product-card">
 
-                            <div class="product-img">🎵</div>
+                                    <div class="product-img">
+                                        <img src="/images/products/<%= product.image %>" alt="<%= product.name %>">
+                                    </div>
 
-                            <div>
-                                <h3>
-                                    <%= product.name %>
-                                </h3>
+                                    <div>
+                                        <h3>
+                                            <%= product.name %>
+                                        </h3>
 
-                                <p>
-                                    <%= product.category %>
-                                </p>
+                                        <p>
+                                            <%= product.category.name %>
+                                        </p>
 
-                                <p>
-                                    <%= product.level %>
-                                </p>
+                                        <p>
+                                            <%= product.level %>
+                                        </p>
 
-                                <p class="price">$<%= product.price %>
-                                </p>
+                                        <p class="price">$<%= product.price %>
+                                        </p>
 
-                                <a href="/products/<%= product.id %>" class="btn-secondary">
-                                    Ver detalle
-                                </a>
-                                <a href="/products/<%= product.id %>/edit" class="btn-secondary">
-                                    Editar
-                                </a>
-                                <form action="/products/<%= product.id %>?_method=DELETE" method="POST">
-                                    <button type="submit" class="delete-btn">
-                                        Eliminar
-                                    </button>
-                                </form>
-                            </div>
+                                        <a href="/products/<%= product.id %>" class="btn-secondary">
+                                            Ver detalle
+                                        </a>
+                                        <% if (userLogged && (userLogged.id==product.teacherId ||
+                                            userLogged.category=='admin' )) { %>
 
-                        </article>
+                                            <a href="/products/<%= product.id %>/edit" class="btn-secondary">
+                                                Editar
+                                            </a>
+
+                                            <form action="/products/<%= product.id %>?_method=DELETE" method="POST">
+                                                <button type="submit" class="delete-btn">
+                                                    Eliminar
+                                                </button>
+                                            </form>
+
+                                            <% } %>
+                                    </div>
+
+                                </article>
 
 
-                        <% }) %>
+                                <% }) %>
 
 
-                </div>
+                        </div>
             </main>
 
             <%- include('../partials/footer') %>

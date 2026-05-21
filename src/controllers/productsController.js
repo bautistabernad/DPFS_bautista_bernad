@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
+const db = require('../../database/models');
+const { Op } = require('sequelize');
+
 const productsFilePath = path.join(__dirname, '../../data/products.json');
 
 const products = JSON.parse(
@@ -9,106 +12,187 @@ const products = JSON.parse(
 
 const productsController = {
 
-    detail: (req, res) => {
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, 'utf-8')
-        );
+    detail: async (req, res) => {
+        try {
+            const product = await db.Product.findByPk(req.params.id, {
+                include: [
+                    { association: 'category' }
+                ]
+            });
 
-        const product = products.find(product => product.id == req.params.id);
+            res.render('products/productDetail', {
+                product: product
+            });
 
-        res.render('products/productDetail', {
-            product: product
-        });
+        } catch (error) {
+            console.log(error);
+            res.send('Error al cargar el detalle del producto');
+        }
     },
 
     cart: (req, res) => {
         res.render('products/productCart');
     },
 
-    create: (req, res) => {
-        res.render('products/productCreate');
+    create: async (req, res) => {
+        try {
+            const categories = await db.Category.findAll();
+
+            res.render('products/productCreate', {
+                categories: categories
+            });
+
+        } catch (error) {
+            console.log(error);
+            res.send('Error al cargar formulario de creación');
+        }
     },
 
-    edit: (req, res) => {
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, 'utf-8')
-        );
+    edit: async (req, res) => {
+        try {
+            const product = await db.Product.findByPk(req.params.id);
 
-        const product = products.find(product => product.id == req.params.id);
-
-        res.render('products/productEdit', {
-            product: product
-        });
-    },
-    list: (req, res) => {
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, 'utf-8')
-        );
-
-        res.render('products/productsList', {
-            products: products
-        });
-    },
-    store: (req, res) => {
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, 'utf-8')
-        );
-
-        const newProduct = {
-            id: products.length > 0 ? products[products.length - 1].id + 1 : 1,
-            name: req.body.name,
-            description: req.body.description,
-            image: req.body.image,
-            category: req.body.category,
-            level: req.body.level,
-            price: Number(req.body.price)
-        };
-
-        products.push(newProduct);
-
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, 2));
-
-        res.redirect('/products');
-    },
-    update: (req, res) => {
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, 'utf-8')
-        );
-
-        const id = req.params.id;
-
-        const updatedProducts = products.map(product => {
-            if (product.id == id) {
-                return {
-                    id: product.id,
-                    name: req.body.name,
-                    description: req.body.description,
-                    image: req.body.image,
-                    category: req.body.category,
-                    level: req.body.level,
-                    price: Number(req.body.price)
-                };
+            if (product.teacherId != req.session.userLogged.id && req.session.userLogged.category != 'admin') {
+                return res.send('No tenés permiso para editar este producto');
             }
 
-            return product;
-        });
+            const categories = await db.Category.findAll();
 
-        fs.writeFileSync(productsFilePath, JSON.stringify(updatedProducts, null, 2));
+            res.render('products/productEdit', {
+                product: product,
+                categories: categories
+            });
 
-        res.redirect('/products');
+        } catch (error) {
+            console.log(error);
+            res.send('Error al cargar formulario de edición');
+        }
     },
-    destroy: (req, res) => {
-        const products = JSON.parse(
-            fs.readFileSync(productsFilePath, 'utf-8')
-        );
+    list: async (req, res) => {
+        try {
+            const products = await db.Product.findAll({
+                include: [
+                    { association: 'category' }
+                ]
+            });
 
-        const id = req.params.id;
+            res.render('products/productsList', {
+                products: products
+            });
 
-        const finalProducts = products.filter(product => product.id != id);
+        } catch (error) {
+            console.log(error);
+            res.send('Error al cargar productos');
+        }
+    },
+    store: async (req, res) => {
+        try {
+            await db.Product.create({
+                name: req.body.name,
+                description: req.body.description,
+                image: req.file ? req.file.filename : 'default-product.png',
+                level: req.body.level,
+                price: req.body.price,
+                categoryId: req.body.categoryId,
+                teacherId: req.session.userLogged.id
+            });
 
-        fs.writeFileSync(productsFilePath, JSON.stringify(finalProducts, null, 2));
+            res.redirect('/products');
 
-        res.redirect('/products');
+        } catch (error) {
+            console.log(error);
+            res.send('Error al crear producto');
+        }
+    },
+    update: async (req, res) => {
+        try {
+            const product = await db.Product.findByPk(req.params.id);
+
+            if (!product) {
+                return res.send('Producto no encontrado');
+            }
+
+            if (!req.session.userLogged) {
+                return res.redirect('/users/login');
+            }
+
+            if (product.teacherId != req.session.userLogged.id && req.session.userLogged.category != 'admin') {
+                return res.send('No tenés permiso para editar este producto');
+            }
+
+            await db.Product.update({
+                name: req.body.name,
+                description: req.body.description,
+                image: req.file ? req.file.filename : product.image,
+                level: req.body.level,
+                price: req.body.price,
+                categoryId: req.body.categoryId
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.redirect('/products');
+
+        } catch (error) {
+            console.log(error);
+            res.send('Error al editar producto');
+        }
+    },
+    destroy: async (req, res) => {
+        try {
+            const product = await db.Product.findByPk(req.params.id);
+
+            if (!product) {
+                return res.send('Producto no encontrado');
+            }
+
+            if (!req.session.userLogged) {
+                return res.redirect('/users/login');
+            }
+
+            if (product.teacherId != req.session.userLogged.id && req.session.userLogged.category != 'admin') {
+                return res.send('No tenés permiso para eliminar este producto');
+            }
+
+            await db.Product.destroy({
+                where: {
+                    id: req.params.id
+                }
+            });
+
+            res.redirect('/products');
+
+        } catch (error) {
+            console.log(error);
+            res.send('Error al eliminar producto');
+        }
+    },
+
+    search: async (req, res) => {
+        try {
+            const search = req.query.keywords;
+
+            const products = await db.Product.findAll({
+                where: {
+                    name: {
+                        [Op.like]: `%${search}%`
+                    }
+                },
+                include: [
+                    { association: 'category' }
+                ]
+            });
+
+            res.render('products/productsList', {
+                products: products
+            });
+
+        } catch (error) {
+            console.log(error);
+            res.send('Error al buscar productos');
+        }
     },
 }
 module.exports = productsController;

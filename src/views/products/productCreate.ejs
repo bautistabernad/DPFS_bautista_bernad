@@ -20,7 +20,7 @@
                         </p>
                     </div>
 
-                    <form class="auth-form" action="/products" method="POST">
+                    <form class="auth-form" action="/products" method="POST" enctype="multipart/form-data">
 
                         <h2>Nuevo producto</h2>
 
@@ -36,16 +36,17 @@
 
                         <div class="form-group">
                             <label>Imagen</label>
-                            <input type="text" name="image" placeholder="imagen.jpg">
+                            <input type="file" name="image">
                         </div>
 
                         <div class="form-group">
                             <label>Categoría</label>
-                            <select name="category">
-                                <option>Guitarra</option>
-                                <option>Piano</option>
-                                <option>Canto</option>
-                                <option>Batería</option>
+                            <select name="categoryId">
+                                <% categories.forEach(category=> { %>
+                                    <option value="<%= category.id %>">
+                                        <%= category.name %>
+                                    </option>
+                                    <% }) %>
                             </select>
                         </div>
                         <div class="form-group">

@@ -10,12 +10,12 @@
 
                 <section class="detail-container">
                     <div class="detail-image">
-                        🎸
+                        <img src="/images/products/<%= product.image %>" alt="<%= product.name %>">
                     </div>
 
                     <div class="detail-info">
                         <p class="hero-tag">
-                            <%= product.category %> · <%= product.level %>
+                            <%= product.category.name %> · <%= product.level %>
                         </p>
                         <h1>
                             <%= product.name %>
@@ -29,7 +29,7 @@
                         <div class="detail-data">
                             <span>Duración: 60 minutos</span>
                             <span>Modalidad: Online</span>
-                            <span>Instrumento: <%= product.category %></span>
+                            <span>Instrumento: <%= product.category.name %></span>
                         </div>
 
                         <p class="detail-price">

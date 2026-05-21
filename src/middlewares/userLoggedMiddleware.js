@@ -1,20 +1,22 @@
-const fs = require('fs');
-const path = require('path');
+const db = require('../../database/models');
 
-const usersFilePath = path.join(__dirname, '../../data/users.json');
-
-function userLoggedMiddleware(req, res, next) {
+async function userLoggedMiddleware(req, res, next) {
     res.locals.userLogged = false;
 
-    if (req.cookies.userEmail) {
-        const users = JSON.parse(
-            fs.readFileSync(usersFilePath, 'utf-8')
-        );
+    if (req.cookies.userEmail && !req.session.userLogged) {
+        try {
+            const userFromCookie = await db.User.findOne({
+                where: {
+                    email: req.cookies.userEmail
+                }
+            });
 
-        const userFromCookie = users.find(user => user.email == req.cookies.userEmail);
+            if (userFromCookie) {
+                req.session.userLogged = userFromCookie;
+            }
 
-        if (userFromCookie) {
-            req.session.userLogged = userFromCookie;
+        } catch (error) {
+            console.log(error);
         }
     }
 
