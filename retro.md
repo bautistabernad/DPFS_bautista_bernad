@@ -38,3 +38,28 @@
 
 ## Dejar de hacer
 - Trabajar sin separar responsabilidades.
+
+# Retrospectiva Sprint 4
+
+## Comenzar a hacer
+- Probar cada ruta apenas se crea.
+- Revisar el archivo JSON después de cada acción del CRUD.
+- Organizar mejor las rutas dinámicas para evitar errores.
+
+## Hacer más
+- Practicar lectura y escritura de archivos JSON.
+- Usar controladores para separar mejor la lógica.
+- Verificar que los formularios tengan correctamente los atributos name, action y method.
+
+## Continuar haciendo
+- Mantener la estructura MVC del proyecto.
+- Trabajar paso a paso y probar cada avance.
+- Mantener estilos consistentes en todas las vistas.
+
+## Hacer menos
+- Avanzar a muchas funcionalidades sin probar antes.
+- Repetir código innecesariamente.
+
+## Dejar de hacer
+- Dejar rutas sin revisar en localhost.
+- Trabajar sin reiniciar el servidor después de cambios importantes.

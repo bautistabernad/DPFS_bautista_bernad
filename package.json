@@ -1,9 +1,13 @@
 {
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
     "ejs": "^5.0.2",
     "express": "^5.2.1",
     "express-generator": "^4.2.0",
-    "method-override": "^3.0.0"
+    "express-session": "^1.19.0",
+    "method-override": "^3.0.0",
+    "multer": "^2.1.1"
   },
   "name": "dpfs_bautista_bernad",
   "version": "1.0.0",

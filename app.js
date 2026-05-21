@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 const methodOverride = require('method-override');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const userLoggedMiddleware = require('./src/middlewares/userLoggedMiddleware');
 
 const app = express();
 
@@ -11,6 +14,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
+
+app.use(cookieParser());
+
+app.use(session({
+    secret: 'tempo secreto',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(userLoggedMiddleware);
+
 
 const mainRoutes = require('./src/routes/mainRoutes');
 const productsRoutes = require('./src/routes/productsRoutes');

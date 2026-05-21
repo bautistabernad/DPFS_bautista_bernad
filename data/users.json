@@ -1,11 +1,20 @@
 [
-    {
-        "id": 1,
-        "firstName": "Bautista",
-        "lastName": "Bernad",
-        "email": "bauti@tempo.com",
-        "password": "123456",
-        "category": "admin",
-        "image": "user1.jpg"
-    }
+  {
+    "id": 1,
+    "firstName": "Bautista",
+    "lastName": "Bernad",
+    "email": "bauti@tempo.com",
+    "password": "123456",
+    "category": "admin",
+    "image": "user1.jpg"
+  },
+  {
+    "id": 2,
+    "firstName": "bautista ",
+    "lastName": "b",
+    "email": "bauti.puey1@gmail.com",
+    "password": "$2b$10$viLWCeLEcG3.7kBdfjBV.eekWymTEDz38N27g4M1biWDheI3ZIEsC",
+    "category": "student",
+    "image": "user-1779376882501.jpeg"
+  }
 ]

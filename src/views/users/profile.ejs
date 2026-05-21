@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../partials/head') %>
+
+    <body>
+
+        <%- include('../partials/header') %>
+
+            <main class="auth-page">
+
+                <section class="auth-container">
+
+                    <div class="auth-left">
+                        <p class="hero-tag">Mi perfil</p>
+                        <h1>Hola, <%= user.firstName %>
+                        </h1>
+                        <p>
+                            Desde acá podés ver tus datos de usuario y acceder a tus clases en Tempo.
+                        </p>
+                    </div>
+
+                    <div class="auth-form">
+
+                        <h2>Datos de la cuenta</h2>
+
+                        <div class="profile-card">
+                            <img src="/images/users/<%= user.image %>" alt="Imagen de perfil" class="profile-img">
+
+                            <h3>
+                                <%= user.firstName %>
+                                    <%= user.lastName %>
+                            </h3>
+
+                            <p>Email: <%= user.email %>
+                            </p>
+                            <p>Categoría: <%= user.category %>
+                            </p>
+
+                            <a href="/users/logout" class="btn-primary auth-btn">
+                                Cerrar sesión
+                            </a>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </main>
+
+            <%- include('../partials/footer') %>
+
+    </body>
+
+</html>

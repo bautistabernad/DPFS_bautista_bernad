@@ -20,40 +20,39 @@
                         </p>
                     </div>
 
-                    <form class="auth-form">
+                    <form class="auth-form" action="/users/login" method="POST">
 
                         <h2>Iniciar sesión</h2>
 
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" placeholder="Ingresá tu email">
+                            <input type="email" name="email" placeholder="Ingresá tu email">
                         </div>
 
                         <div class="form-group">
                             <label>Contraseña</label>
-                            <input type="password" placeholder="Ingresá tu contraseña">
+                            <input type="password" name="password" placeholder="Ingresá tu contraseña">
                         </div>
 
                         <div class="remember-row">
                             <label>
-                                <input type="checkbox">
+                                <input type="checkbox" name="remember">
                                 Recordarme
                             </label>
 
                             <a href="#">Olvidé mi contraseña</a>
                         </div>
 
-                        <button class="btn-primary auth-btn">
+                        <button type="submit" class="btn-primary auth-btn">
                             Iniciar sesión
                         </button>
 
                         <p class="auth-link">
                             ¿No tenés cuenta?
-                            <a href="register.html">Registrate</a>
+                            <a href="/users/register">Registrate</a>
                         </p>
 
                     </form>
-
                 </section>
 
             </main>

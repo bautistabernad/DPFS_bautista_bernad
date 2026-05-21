@@ -19,46 +19,50 @@
                         </p>
                     </div>
 
-                    <form class="auth-form">
+                    <form class="auth-form" action="/users/register" method="POST" enctype="multipart/form-data">
 
                         <h2>Registro</h2>
 
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" placeholder="Ingresá tu nombre">
+                            <input type="text" name="firstName" placeholder="Ingresá tu nombre">
                         </div>
 
                         <div class="form-group">
                             <label>Apellido</label>
-                            <input type="text" placeholder="Ingresá tu apellido">
+                            <input type="text" name="lastName" placeholder="Ingresá tu apellido">
                         </div>
 
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" placeholder="Ingresá tu email">
+                            <input type="email" name="email" placeholder="Ingresá tu email">
                         </div>
 
                         <div class="form-group">
                             <label>Contraseña</label>
-                            <input type="password" placeholder="Creá una contraseña">
-                            <small class="form-error">La contraseña debe tener al menos 8 caracteres.</small>
+                            <input type="password" name="password" placeholder="Creá una contraseña">
                         </div>
 
                         <div class="form-group">
-                            <label>Tipo de usuario</label>
-                            <select>
-                                <option>Alumno</option>
-                                <option>Profesor</option>
+                            <label>Categoría</label>
+                            <select name="category">
+                                <option value="student">Alumno</option>
+                                <option value="teacher">Profesor</option>
                             </select>
                         </div>
 
-                        <button class="btn-primary auth-btn">
+                        <div class="form-group">
+                            <label>Imagen de perfil</label>
+                            <input type="file" name="image">
+                        </div>
+
+                        <button type="submit" class="btn-primary auth-btn">
                             Crear cuenta
                         </button>
 
                         <p class="auth-link">
                             ¿Ya tenés cuenta?
-                            <a href="login.html">Iniciar sesión</a>
+                            <a href="/users/login">Iniciar sesión</a>
                         </p>
 
                     </form>
