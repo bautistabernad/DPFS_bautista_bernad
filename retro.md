@@ -112,3 +112,27 @@
 ## Dejar de hacer
 - Depender de JSON cuando la base de datos ya está implementada.
 - Dejar permisos importantes sin validar desde el back-end.
+
+# Retrospectiva Sprint 7
+
+## Comenzar a hacer
+- Probar formularios con datos incorrectos antes de probarlos con datos correctos.
+- Revisar que las validaciones de front-end y back-end coincidan.
+- Documentar mejor los errores esperados en cada formulario.
+
+## Hacer más
+- Practicar Express Validator.
+- Probar validaciones desde el navegador y desde el servidor.
+- Mantener mensajes de error claros para mejorar la experiencia del usuario.
+
+## Continuar haciendo
+- Trabajar paso a paso.
+- Mantener la estructura MVC.
+- Probar cada cambio en localhost.
+
+## Hacer menos
+- Avanzar sin revisar la consola del navegador.
+- Repetir validaciones innecesariamente.
+
+## Dejar de hacer
+- Confiar solamente en validaciones del front-end.
