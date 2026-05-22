@@ -3,6 +3,7 @@ const path = require('path');
 
 const db = require('../../database/models');
 const { Op } = require('sequelize');
+const { validationResult } = require('express-validator');
 
 const productsFilePath = path.join(__dirname, '../../data/products.json');
 
@@ -39,7 +40,9 @@ const productsController = {
             const categories = await db.Category.findAll();
 
             res.render('products/productCreate', {
-                categories: categories
+                categories: categories,
+                errors: {},
+                oldData: {}
             });
 
         } catch (error) {
@@ -52,6 +55,10 @@ const productsController = {
         try {
             const product = await db.Product.findByPk(req.params.id);
 
+            if (!product) {
+                return res.send('Producto no encontrado');
+            }
+
             if (product.teacherId != req.session.userLogged.id && req.session.userLogged.category != 'admin') {
                 return res.send('No tenés permiso para editar este producto');
             }
@@ -60,7 +67,8 @@ const productsController = {
 
             res.render('products/productEdit', {
                 product: product,
-                categories: categories
+                categories: categories,
+                errors: {}
             });
 
         } catch (error) {
@@ -87,6 +95,18 @@ const productsController = {
     },
     store: async (req, res) => {
         try {
+            const resultValidation = validationResult(req);
+
+            if (!resultValidation.isEmpty()) {
+                const categories = await db.Category.findAll();
+
+                return res.render('products/productCreate', {
+                    categories: categories,
+                    errors: resultValidation.mapped(),
+                    oldData: req.body
+                });
+            }
+
             await db.Product.create({
                 name: req.body.name,
                 description: req.body.description,
@@ -118,6 +138,22 @@ const productsController = {
 
             if (product.teacherId != req.session.userLogged.id && req.session.userLogged.category != 'admin') {
                 return res.send('No tenés permiso para editar este producto');
+            }
+
+            const resultValidation = validationResult(req);
+
+            if (!resultValidation.isEmpty()) {
+                const categories = await db.Category.findAll();
+
+                return res.render('products/productEdit', {
+                    product: {
+                        ...product.dataValues,
+                        ...req.body,
+                        image: product.image
+                    },
+                    categories: categories,
+                    errors: resultValidation.mapped()
+                });
             }
 
             await db.Product.update({

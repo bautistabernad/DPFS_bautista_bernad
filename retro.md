@@ -87,3 +87,28 @@
 
 ## Dejar de hacer
 - Trabajar sin reiniciar el servidor después de cambios en rutas o middlewares.
+
+# Retrospectiva Sprint 6
+
+## Comenzar a hacer
+- Revisar mejor las relaciones de base de datos antes de implementarlas.
+- Probar cada modelo de Sequelize apenas se crea.
+- Documentar las reglas de permisos del proyecto.
+
+## Hacer más
+- Practicar consultas con Sequelize.
+- Verificar relaciones entre modelos antes de avanzar.
+- Probar el CRUD completo después de cada cambio importante.
+
+## Continuar haciendo
+- Trabajar paso a paso.
+- Mantener una estructura MVC ordenada.
+- Usar commits descriptivos al cerrar cada sprint.
+
+## Hacer menos
+- Avanzar sin probar las rutas principales.
+- Cambiar varias partes del código al mismo tiempo.
+
+## Dejar de hacer
+- Depender de JSON cuando la base de datos ya está implementada.
+- Dejar permisos importantes sin validar desde el back-end.

@@ -26,12 +26,25 @@
 
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" name="email" placeholder="Ingresá tu email">
+                            <input type="email" name="email" placeholder="Ingresá tu email"
+                                value="<%= oldData.email ? oldData.email : '' %>">
+
+                            <% if (errors.email) { %>
+                                <small class="form-error">
+                                    <%= errors.email.msg %>
+                                </small>
+                                <% } %>
                         </div>
 
                         <div class="form-group">
                             <label>Contraseña</label>
                             <input type="password" name="password" placeholder="Ingresá tu contraseña">
+
+                            <% if (errors.password) { %>
+                                <small class="form-error">
+                                    <%= errors.password.msg %>
+                                </small>
+                                <% } %>
                         </div>
 
                         <div class="remember-row">
@@ -58,7 +71,7 @@
             </main>
 
             <%- include('../partials/footer') %>
-
+                <script src="/js/loginValidation.js"></script>
     </body>
 
 </html>

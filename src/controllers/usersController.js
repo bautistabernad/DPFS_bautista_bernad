@@ -2,53 +2,60 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const db = require('../../database/models');
+const { validationResult } = require('express-validator');
 
 
 
 const usersController = {
     login: (req, res) => {
-        res.render('users/login');
+        res.render('users/login', {
+            errors: {},
+            oldData: {}
+        });
     },
     processLogin: async (req, res) => {
         try {
+            const resultValidation = validationResult(req);
+
+            if (!resultValidation.isEmpty()) {
+                return res.render('users/login', {
+                    errors: resultValidation.mapped(),
+                    oldData: req.body
+                });
+            }
+
             const userToLogin = await db.User.findOne({
                 where: {
                     email: req.body.email
                 }
             });
 
-            if (userToLogin) {
-                const passwordOk = bcrypt.compareSync(req.body.password, userToLogin.password);
+            req.session.userLogged = userToLogin;
 
-                if (passwordOk) {
-                    req.session.userLogged = userToLogin;
-
-                    if (req.body.remember) {
-                        res.cookie('userEmail', userToLogin.email, {
-                            maxAge: 1000 * 60 * 60 * 24 * 7
-                        });
-                    }
-
-                    return res.redirect('/users/profile');
-                }
+            if (req.body.remember) {
+                res.cookie('userEmail', userToLogin.email, {
+                    maxAge: 1000 * 60 * 60 * 24 * 7
+                });
             }
 
-            return res.render('users/login', {
-                error: 'Email o contraseña incorrectos'
-            });
+            return res.redirect('/users/profile');
 
         } catch (error) {
             console.log(error);
             res.send('Error al iniciar sesión');
         }
     },
-
-    register: (req, res) => {
-        res.render('users/register');
-    },
-
     store: async (req, res) => {
         try {
+            const resultValidation = validationResult(req);
+
+            if (!resultValidation.isEmpty()) {
+                return res.render('users/register', {
+                    errors: resultValidation.mapped(),
+                    oldData: req.body
+                });
+            }
+
             await db.User.create({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -65,6 +72,14 @@ const usersController = {
             res.send('Error al registrar usuario');
         }
     },
+
+    register: (req, res) => {
+        res.render('users/register', {
+            errors: {},
+            oldData: {}
+        });
+    },
+
     profile: async (req, res) => {
         try {
             const user = await db.User.findByPk(req.session.userLogged.id);
