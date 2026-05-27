@@ -30,7 +30,38 @@ const usersController = {
                 }
             });
 
-            req.session.userLogged = userToLogin;
+            if (!userToLogin) {
+                return res.render('users/login', {
+                    errors: {
+                        email: {
+                            msg: 'Este email no se encuentra registrado'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
+
+            const passwordOk = bcrypt.compareSync(req.body.password, userToLogin.password);
+
+            if (!passwordOk) {
+                return res.render('users/login', {
+                    errors: {
+                        password: {
+                            msg: 'La contraseña es incorrecta'
+                        }
+                    },
+                    oldData: req.body
+                });
+            }
+
+            req.session.userLogged = {
+                id: userToLogin.id,
+                firstName: userToLogin.firstName,
+                lastName: userToLogin.lastName,
+                email: userToLogin.email,
+                category: userToLogin.category,
+                image: userToLogin.image
+            };
 
             if (req.body.remember) {
                 res.cookie('userEmail', userToLogin.email, {
